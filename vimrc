@@ -12,5 +12,9 @@ set cindent
 set number
 set colorcolumn=80
 
+set whichwrap+=<,>,h,l,[,]
+onoremap <silent> j gj
+onoremap <silent> k gk
+
 syntax on
 filetype plugin indent on
