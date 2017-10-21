@@ -97,7 +97,7 @@ prompt_path() {
     prefix=$(git rev-parse --show-prefix)
     echo "%F{green}$(basename $toplevel)%f/$prefix "
   else
-    echo "%~"
+    echo "%~/"
   fi
 }
 

@@ -6,6 +6,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'tomtom/tcomment_vim'
 Plug 'flazz/vim-colorschemes'
+Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 
 call plug#end()
 
