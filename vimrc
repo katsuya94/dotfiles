@@ -33,6 +33,8 @@ set whichwrap+=<,>,h,l,[,]
 onoremap <silent> j gj
 onoremap <silent> k gk
 
+xnoremap <expr> p 'pgv"'.v:register.'y'
+
 syntax on
 filetype plugin indent on
 
