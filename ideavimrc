@@ -1,0 +1,1 @@
+map <silent> <leader>ff :action GotoFile<CR>
