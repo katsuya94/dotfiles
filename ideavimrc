@@ -2,4 +2,5 @@ map <silent> <leader>ff :action GotoFile<CR>
 map <silent> <leader>fc :action GotoClass<CR>
 map <silent> <leader>tt :action ActivateTerminalToolWindow<CR>
 map <silent> <leader>tp :action ActivateProjectToolWindow<CR>
-
+map <silent> <leader>rf :action RunClass<CR>
+map <silent> <leader>rl :action Run<CR>
