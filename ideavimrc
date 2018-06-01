@@ -4,3 +4,5 @@ map <silent> <leader>tt :action ActivateTerminalToolWindow<CR>
 map <silent> <leader>tp :action ActivateProjectToolWindow<CR>
 map <silent> <leader>rf :action RunClass<CR>
 map <silent> <leader>rl :action Run<CR>
+map <silent> <leader>rb gg:action Run<CR><c-o>
+map <silent> <leader>gs :action QuickJavaDoc<CR>
