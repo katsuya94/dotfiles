@@ -43,6 +43,14 @@ Color = Struct.new(:red, :green, :blue) do
     )
   end
 
+  def *(scalar)
+    Color.new(
+      red * scalar,
+      green * scalar,
+      blue * scalar,
+    )
+  end
+
   def anti
     if (WHITE - self).norm > (BLACK - self).norm
       WHITE
@@ -196,11 +204,11 @@ forced_groups.each do |source_hex, target_hex|
 end
 
 group_substitutions = {
-  "e91e63" => "ef0058",
-  "2d2a2e" => "272822",
-  "dbdbdb" => "fffbf7",
-  "727072" => "939293",
-  "f8e71c" => "d8cf54",
+  # "e91e63" => "ef0058",
+  # "2d2a2e" => "272822",
+  # "dbdbdb" => "fffbf7",
+  # "727072" => "939293",
+  # "f8e71c" => "ded466",
   "f59762" => "fd971f",
 }
 
@@ -217,10 +225,14 @@ group_substitutions.each do |base_hex, custom_hex|
   difference = custom_color - base_color
   group.each_with_index do |color, i|
     adjusted = color + difference
-    overshot = [0, adjusted.red - 255, adjusted.green - 255, adjusted.blue - 255].max
-    adjusted -= Color.new(overshot, overshot, overshot)
-    undershot = [0, adjusted.red, adjusted.green, adjusted.blue].min
-    adjusted -= Color.new(undershot, undershot, undershot)
+    max = [adjusted.red, adjusted.green, adjusted.blue].max
+    min = [adjusted.red, adjusted.green, adjusted.blue].min
+    upper = [255, max].min
+    lower = [0, min].max
+    adjusted -= Color.new(min, min, min)
+    adjusted = adjusted.float * (upper - lower) / (max - min)
+    adjusted += Color.new(lower, lower, lower)
+    adjusted = adjusted.round
     substitutions[color.hex] = adjusted.hex
     group[i] = adjusted
   end
