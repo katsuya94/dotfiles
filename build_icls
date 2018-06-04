@@ -1,6 +1,14 @@
 #!/usr/bin/env ruby
 require "erb"
 
+
+
+Lab = Struct.new(:l, :a, :b) do
+  def delta(other)
+    Math.sqrt((l - other.l) ** 2 + (a - other.a) ** 2 + (b - other.b) ** 2)
+  end
+end
+
 Color = Struct.new(:red, :green, :blue) do
   WHITE = new(255, 255, 255)
   BLACK = new(0, 0, 0)
@@ -66,6 +74,66 @@ Color = Struct.new(:red, :green, :blue) do
   def hex
     sprintf("%02x%02x%02x", red, green, blue)
   end
+
+  def lab
+    var_R = ( red.to_f / 255 )
+    var_G = ( green.to_f / 255 )
+    var_B = ( blue.to_f / 255 )
+
+    if ( var_R > 0.04045 )
+      var_R = ( ( var_R + 0.055 ) / 1.055 ) ** 2.4
+    else
+      var_R = var_R / 12.92
+    end
+
+    if ( var_G > 0.04045 )
+      var_G = ( ( var_G + 0.055 ) / 1.055 ) ** 2.4
+    else
+      var_G = var_G / 12.92
+    end
+
+    if ( var_B > 0.04045 )
+      var_B = ( ( var_B + 0.055 ) / 1.055 ) ** 2.4
+    else
+      var_B = var_B / 12.92
+    end
+
+    var_R = var_R * 100
+    var_G = var_G * 100
+    var_B = var_B * 100
+
+    x = var_R * 0.4124 + var_G * 0.3576 + var_B * 0.1805
+    y = var_R * 0.2126 + var_G * 0.7152 + var_B * 0.0722
+    z = var_R * 0.0193 + var_G * 0.1192 + var_B * 0.9505
+
+    var_X = x / 95.047
+    var_Y = y / 100.000
+    var_Z = z / 108.883
+
+    if ( var_X > 0.008856 )
+      var_X = var_X ** ( 1.0/3 )
+    else
+      var_X = ( 7.787 * var_X ) + ( 16.0 / 116 )
+    end
+
+    if ( var_Y > 0.008856 )
+      var_Y = var_Y ** ( 1.0/3 )
+    else
+      var_Y = ( 7.787 * var_Y ) + ( 16.0 / 116 )
+    end
+
+    if ( var_Z > 0.008856 )
+      var_Z = var_Z ** ( 1.0/3 )
+    else
+      var_Z = ( 7.787 * var_Z ) + ( 16.0 / 116 )
+    end
+
+    Lab.new(
+      ( 116 * var_Y ) - 16,
+      500 * ( var_X - var_Y ),
+      200 * ( var_Y - var_Z ),
+    )
+  end
 end
 
 class String
@@ -89,7 +157,7 @@ while true
 
   distances = centers.map do |lhs|
     centers.map do |rhs|
-      (lhs - rhs).float.norm
+      lhs.lab.delta(rhs.lab)
     end
   end
 
@@ -107,7 +175,7 @@ while true
     end
   end
 
-  break if min_distance > 25.0
+  break if min_distance > 20.0
 
   groups[min_i] += groups[min_j]
   groups.delete_at(min_j)
@@ -117,7 +185,6 @@ group_substitutions = {
   "e91e63" => "ef0058",
   "2d2a2e" => "272822",
   "dbdbdb" => "fffbf7",
-  "c1c0c0" => "f8f8f0",
   "727072" => "939293",
 }
 
@@ -127,6 +194,10 @@ group_substitutions.each do |base_hex, custom_hex|
   base_color = base_hex.to_color
   custom_color = custom_hex.to_color
   group = groups.detect { |group| group.include?(base_color) }
+  if group.nil?
+    puts "Group with #{base_hex} not found"
+    next
+  end
   difference = custom_color - base_color
   group.each_with_index do |color, i|
     adjusted = color + difference
