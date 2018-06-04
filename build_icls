@@ -192,6 +192,7 @@ end
 forced_groups = {
   "f8e71c" => "fbd85c",
   "f49810" => "f59762",
+  "86dde9" => "33cccc",
 }
 
 forced_groups.each do |source_hex, target_hex|
@@ -204,12 +205,14 @@ forced_groups.each do |source_hex, target_hex|
 end
 
 group_substitutions = {
-  "e91e63" => "ef0058",
+  "e91e63" => "ff6188",
   "2d2a2e" => "272822",
-  "dbdbdb" => "fffbf7",
+  "c1c0c0" => "fffbf7",
   "727072" => "939293",
   "fbd85c" => "ffd866",
   "f59762" => "fc9867",
+  "aedc70" => "a9dc76",
+  "86dde9" => "78dce8",
 }
 
 substitutions = {}
@@ -227,8 +230,8 @@ group_substitutions.each do |base_hex, custom_hex|
     adjusted = color + difference
     max = [adjusted.red, adjusted.green, adjusted.blue].max
     min = [adjusted.red, adjusted.green, adjusted.blue].min
-    upper = [255, max].min
-    lower = [0, min].max
+    upper = [0, [255, max].min].max
+    lower = [0, [255, min].min].max
     adjusted -= Color.new(min, min, min)
     adjusted = adjusted.float * (upper - lower) / (max - min)
     adjusted += Color.new(lower, lower, lower)
