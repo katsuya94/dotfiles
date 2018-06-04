@@ -368,7 +368,7 @@
     </option>
     <option name="CONDITIONALLY_NOT_COMPILED">
       <value>
-        <option name="FOREGROUND" value="536c46" />
+        <option name="FOREGROUND" value="d6fd89" />
       </value>
     </option>
     <option name="CONSOLE_CYAN_OUTPUT">
@@ -758,8 +758,8 @@
     </option>
     <option name="DIFF_INSERTED">
       <value>
-        <option name="BACKGROUND" value="264b33" />
-        <option name="ERROR_STRIPE_COLOR" value="447152" />
+        <option name="BACKGROUND" value="a9dc76" />
+        <option name="ERROR_STRIPE_COLOR" value="c6ff95" />
       </value>
     </option>
     <option name="DIFF_MODIFIED">
@@ -825,7 +825,7 @@
     </option>
     <option name="EXECUTIONPOINT_ATTRIBUTES">
       <value>
-        <option name="BACKGROUND" value="264b33" />
+        <option name="BACKGROUND" value="a9dc76" />
       </value>
     </option>
     <option name="Enum name">
@@ -1408,7 +1408,7 @@
     <option name="LESS_VARIABLE" baseAttributes="DEFAULT_INSTANCE_FIELD" />
     <option name="LINE_FULL_COVERAGE">
       <value>
-        <option name="BACKGROUND" value="264b33" />
+        <option name="BACKGROUND" value="a9dc76" />
       </value>
     </option>
     <option name="LINE_NONE_COVERAGE">
