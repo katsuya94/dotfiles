@@ -115,8 +115,9 @@ end
 
 group_substitutions = {
   "e91e63" => "ef0058",
-  "221f22" => "272822",
+  "2d2a2e" => "272822",
   "dbdbdb" => "fffbf7",
+  "c1c0c0" => "f8f8f0",
 }
 
 substitutions = {}
