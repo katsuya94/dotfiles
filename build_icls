@@ -208,8 +208,8 @@ group_substitutions = {
   "2d2a2e" => "272822",
   "dbdbdb" => "fffbf7",
   "727072" => "939293",
-  "f8e71c" => "ded466",
-  "f59762" => "fd971f",
+  "f8e71c" => "ffd866",
+  "f59762" => "fc9867",
 }
 
 substitutions = {}
