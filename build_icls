@@ -204,11 +204,11 @@ forced_groups.each do |source_hex, target_hex|
 end
 
 group_substitutions = {
-  # "e91e63" => "ef0058",
-  # "2d2a2e" => "272822",
-  # "dbdbdb" => "fffbf7",
-  # "727072" => "939293",
-  # "f8e71c" => "ded466",
+  "e91e63" => "ef0058",
+  "2d2a2e" => "272822",
+  "dbdbdb" => "fffbf7",
+  "727072" => "939293",
+  "f8e71c" => "ded466",
   "f59762" => "fd971f",
 }
 
