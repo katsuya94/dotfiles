@@ -181,11 +181,27 @@ while true
   groups.delete_at(min_j)
 end
 
+forced_groups = {
+  "f8e71c" => "fbd85c",
+  "f49810" => "f59762",
+}
+
+forced_groups.each do |source_hex, target_hex|
+  source_color = source_hex.to_color
+  target_color = target_hex.to_color
+  source_group = groups.detect { |group| group.include?(source_color) }
+  target_group = groups.detect { |group| group.include?(target_color) }
+  source_group.each { |color| target_group << color }
+  groups.delete(source_group)
+end
+
 group_substitutions = {
   "e91e63" => "ef0058",
   "2d2a2e" => "272822",
   "dbdbdb" => "fffbf7",
   "727072" => "939293",
+  "f8e71c" => "d8cf54",
+  "f59762" => "fd971f",
 }
 
 substitutions = {}
