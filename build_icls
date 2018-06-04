@@ -1,0 +1,166 @@
+#!/usr/bin/env ruby
+require "erb"
+
+Color = Struct.new(:red, :green, :blue) do
+  WHITE = new(255, 255, 255)
+  BLACK = new(0, 0, 0)
+
+  def -(other)
+    Color.new(
+      red - other.red,
+      green - other.green,
+      blue - other.blue,
+    )
+  end
+
+  def +(other)
+    Color.new(
+      red + other.red,
+      green + other.green,
+      blue + other.blue,
+    )
+  end
+
+  def ==(other)
+    red == other.red &&
+      green == other.green &&
+      blue == other.blue
+  end
+
+  def /(scalar)
+    Color.new(
+      red / scalar,
+      green / scalar,
+      blue / scalar,
+    )
+  end
+
+  def anti
+    if (WHITE - self).norm > (BLACK - self).norm
+      WHITE
+    else
+      BLACK
+    end
+  end
+
+  def round
+    Color.new(
+      red.round,
+      green.round,
+      blue.round,
+    )
+  end
+
+  def float
+    Color.new(
+      red.to_f,
+      green.to_f,
+      blue.to_f,
+    )
+  end
+
+  def norm
+    Math.sqrt(red ** 2 + green ** 2 + blue ** 2)
+  end
+
+  def hex
+    sprintf("%02x%02x%02x", red, green, blue)
+  end
+end
+
+class String
+  def to_color
+    color = Color.new
+    color.red = self[0...2].to_i(16).to_f
+    color.green = self[2...4].to_i(16).to_f
+    color.blue = self[4...6].to_i(16).to_f
+    color
+  end
+end
+
+base = File.read(File.join(File.dirname(__FILE__), "base.icls"))
+
+colors = base.scan(/(?<=")[0-9a-f]{6}(?=")/).uniq.map(&:to_color)
+
+groups = colors.map { |color| [color] }
+
+while true
+  centers = groups.map { |group| group.reduce(:+).float / group.count }
+
+  distances = centers.map do |lhs|
+    centers.map do |rhs|
+      (lhs - rhs).float.norm
+    end
+  end
+
+  min_distance = Float::INFINITY
+  min_i = nil
+  min_j = nil
+  distances.each_with_index do |row, i|
+    row.each_with_index do |distance, j|
+      next if i == j
+      if distance < min_distance
+        min_distance = distance
+        min_i = i
+        min_j = j
+      end
+    end
+  end
+
+  break if min_distance > 25.0
+
+  groups[min_i] += groups[min_j]
+  groups.delete_at(min_j)
+end
+
+group_substitutions = {
+  "e91e63" => "ef0058",
+  "221f22" => "272822",
+  "c1c0c0" => "fffbf7",
+}
+
+substitutions = {}
+
+group_substitutions.each do |base_hex, custom_hex|
+  base_color = base_hex.to_color
+  custom_color = custom_hex.to_color
+  group = groups.detect { |group| group.include?(base_color) }
+  difference = custom_color - base_color
+  group.each_with_index do |color, i|
+    adjusted = color + difference
+    overshot = [0, adjusted.red - 255, adjusted.green - 255, adjusted.blue - 255].max
+    adjusted -= Color.new(overshot, overshot, overshot)
+    undershot = [0, adjusted.red, adjusted.green, adjusted.blue].min
+    adjusted -= Color.new(undershot, undershot, undershot)
+    substitutions[color.hex] = adjusted.hex
+    group[i] = adjusted
+  end
+end
+
+preview = ERB.new(<<-ERB).result(binding)
+<html>
+<body style="font-size: 3.0em;">
+<% groups.each do |group| %>
+  <div>
+    <% group.each do |color| %>
+      <span style="font-family: monospace; color: #<%= color.anti.hex %>; background-color: #<%= color.hex %>;">
+        <%= color.hex %>
+      </span>
+    <% end %>
+  </div>
+<% end %>
+</body>
+</html>
+ERB
+
+File.open(File.join(File.dirname(__FILE__), "preview.html"), "w") do |file|
+  file.write(preview)
+end
+
+File.open(File.join(File.dirname(__FILE__), "custom.icls"), "w") do |file|
+  custom = base
+  substitutions.each do |color_hex, adjusted_hex|
+    custom.gsub!(/(?<=")#{color_hex}(?=")/, adjusted_hex)
+  end
+  file.write(custom)
+end
