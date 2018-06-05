@@ -212,6 +212,7 @@ forced_groups.each do |source_hex, target_hex|
 end
 
 BACKGROUND = "242622"
+GREEN = "a2e52c"
 
 group_substitutions = {
   "e91e63" => "f92672", # magenta
@@ -220,9 +221,9 @@ group_substitutions = {
   "727072" => "939293", # grey
   "fbd85c" => "ffe135", # yellow
   "f59762" => "fda526", # orange
-  "aedc70" => "9fdc19", # green
+  "aedc70" => GREEN, # green
   "86dde9" => "66d9ef", # cyan
-  "007f00" => "9fdc19", # green (console)
+  "007f00" => GREEN, # green (console)
   "ab9df5" => "b96af8", # lavender
 }
 
