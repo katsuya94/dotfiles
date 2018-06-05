@@ -218,12 +218,12 @@ group_substitutions = {
   "2d2a2e" => BACKGROUND, # black
   "c1c0c0" => "fffbf7", # white
   "727072" => "939293", # grey
-  "fbd85c" => "fce726", # yellow
+  "fbd85c" => "ffd238", # yellow
   "f59762" => "fd971f", # orange
-  "aedc70" => "a6e22e", # green
+  "aedc70" => "b9da3c", # green
   "86dde9" => "66d9ef", # cyan
-  "007f00" => "a6e22e", # green (console)
-  "ab9df5" => "ab7bf2", # lavender
+  "007f00" => "b9da3c", # green (console)
+  "ab9df5" => "ae6af2", # lavender
 }
 
 substitutions = {}
