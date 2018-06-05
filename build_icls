@@ -1,8 +1,6 @@
 #!/usr/bin/env ruby
 require "erb"
 
-
-
 Lab = Struct.new(:l, :a, :b) do
   def delta(other)
     Math.sqrt((l - other.l) ** 2 + (a - other.a) ** 2 + (b - other.b) ** 2)
@@ -224,7 +222,7 @@ group_substitutions = {
   "aedc70" => GREEN, # green
   "86dde9" => "66d9ef", # cyan
   "007f00" => GREEN, # green (console)
-  "ab9df5" => "f93a92", # magenta
+  "ab9df5" => "fa5b9e", # magenta
 }
 
 substitutions = {}
