@@ -3025,22 +3025,22 @@
     </option>
     <option name="RUBY_BRACES">
       <value>
-        <option name="FOREGROUND" value="86dde9" />
+        <option name="FOREGROUND" value="c1c0c0" />
       </value>
     </option>
     <option name="RUBY_BRACKETS">
       <value>
-        <option name="FOREGROUND" value="86dde9" />
+        <option name="FOREGROUND" value="c1c0c0" />
       </value>
     </option>
     <option name="RUBY_COLON">
       <value>
-        <option name="FOREGROUND" value="86dde9" />
+        <option name="FOREGROUND" value="c1c0c0" />
       </value>
     </option>
     <option name="RUBY_COMMA">
       <value>
-        <option name="FOREGROUND" value="86dde9" />
+        <option name="FOREGROUND" value="c1c0c0" />
       </value>
     </option>
     <option name="RUBY_COMMENT">
@@ -3086,7 +3086,7 @@
     </option>
     <option name="RUBY_HASH_ASSOC">
       <value>
-        <option name="FOREGROUND" value="86dde9" />
+        <option name="FOREGROUND" value="c1c0c0" />
       </value>
     </option>
     <option name="RUBY_HEREDOC_CONTENT">
@@ -3170,7 +3170,7 @@
     </option>
     <option name="RUBY_PARENTHESES">
       <value>
-        <option name="FOREGROUND" value="86dde9" />
+        <option name="FOREGROUND" value="c1c0c0" />
       </value>
     </option>
     <option name="RUBY_REGEXP">
@@ -3195,7 +3195,7 @@
     </option>
     <option name="RUBY_SYMBOL">
       <value>
-        <option name="FOREGROUND" value="aedc70" />
+        <option name="FOREGROUND" value="a6dde9" />
       </value>
     </option>
     <option name="RUBY_WORDS">

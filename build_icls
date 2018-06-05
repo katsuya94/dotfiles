@@ -209,8 +209,8 @@ forced_groups.each do |source_hex, target_hex|
   groups.delete(source_group)
 end
 
-BACKGROUND = "242622"
-GREEN = "b9f226"
+BACKGROUND = "343130"
+GREEN = "b7eb3e"
 
 group_substitutions = {
   "e91e63" => "c579f8", # lavender
@@ -222,7 +222,7 @@ group_substitutions = {
   "aedc70" => GREEN, # green
   "86dde9" => "66d9ef", # cyan
   "007f00" => GREEN, # green (console)
-  "ab9df5" => "fc6c9e", # magenta
+  "ab9df5" => "ff628a", # magenta
 }
 
 substitutions = {}
