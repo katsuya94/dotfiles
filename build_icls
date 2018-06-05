@@ -215,7 +215,7 @@ BACKGROUND = "242622"
 GREEN = "a2e52c"
 
 group_substitutions = {
-  "e91e63" => "f92672", # magenta
+  "e91e63" => "c579f8", # lavender
   "2d2a2e" => BACKGROUND, # black
   "c1c0c0" => "fffbf7", # white
   "727072" => "939293", # grey
@@ -224,7 +224,7 @@ group_substitutions = {
   "aedc70" => GREEN, # green
   "86dde9" => "66d9ef", # cyan
   "007f00" => GREEN, # green (console)
-  "ab9df5" => "c579f8", # lavender
+  "ab9df5" => "f92672", # magenta
 }
 
 substitutions = {}
