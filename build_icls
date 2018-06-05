@@ -224,7 +224,7 @@ group_substitutions = {
   "aedc70" => GREEN, # green
   "86dde9" => "66d9ef", # cyan
   "007f00" => GREEN, # green (console)
-  "ab9df5" => "b96af8", # lavender
+  "ab9df5" => "c579f8", # lavender
 }
 
 substitutions = {}
