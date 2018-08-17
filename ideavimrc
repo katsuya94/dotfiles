@@ -6,3 +6,5 @@ map <silent> <leader>rf :action RunClass<CR>
 map <silent> <leader>rl :action Run<CR>
 map <silent> <leader>rb gg:action RunClass<CR>
 map <silent> <leader>gs :action QuickJavaDoc<CR>
+map <silent> <leader>cc :action CommentByLineComment<CR>
+vmap <silent> <leader>cc <Esc>gvhh:<BS><BS><BS><BS><BS>action VimVisualSwapSelections<CR>:action CommentByLineComment<CR>
