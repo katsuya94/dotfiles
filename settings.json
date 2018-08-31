@@ -1,0 +1,40 @@
+{
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": ["<leader>", "f", "f"],
+            "commands": [
+                "workbench.action.quickOpen"
+            ]
+        },
+        {
+            "before": ["<leader>", "r", "f"],
+            "commands": [
+                "go.test.cursor"
+            ]
+        },
+        {
+            "before": ["<leader>", "r", "b"],
+            "commands": [
+                "go.test.file"
+            ]
+        },
+        {
+            "before": ["<leader>", "r", "l"],
+            "commands": [
+                "go.test.previous"
+            ]
+        },
+        {
+            "before": ["<leader>", "r", "r"],
+            "commands": [
+                "go.test.workspace"
+            ]
+        },
+        {
+            "before": ["<leader>", "r", "p"],
+            "commands": [
+                "go.test.package"
+            ]
+        }
+    ]
+}
