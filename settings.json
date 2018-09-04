@@ -35,6 +35,26 @@
             "commands": [
                 "go.test.package"
             ]
+        },
+        {
+            "before": ["<leader>", "t", "t"],
+            "commands": [
+                "workbench.action.terminal.toggleTerminal"
+            ]
+        },
+        {
+            "before": ["<leader>", "c", "c"],
+            "commands": [
+                "editor.action.commentLine"
+            ]
+        }
+    ],
+    "vim.visualModeKeyBindings": [
+        {
+            "before": ["<leader>", "c", "c"],
+            "commands": [
+                "editor.action.commentLine"
+            ]
         }
     ]
 }
