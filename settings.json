@@ -60,4 +60,5 @@
     "flow.pathToFlow": "${workspaceRoot}/node_modules/.bin/flow",
     "typescript.validate.enable": false,
     "javascript.validate.enable": false,
+    "editor.wordWrap": "on"
 }
