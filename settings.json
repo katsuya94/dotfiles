@@ -66,5 +66,6 @@
     "editor.formatOnSave": false,
     "[javascript]": {
         "editor.formatOnSave": true
-    }
+    },
+    "editor.fontFamily": "'Fantasque Sans Mono', 'Monaco', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'"
 }
