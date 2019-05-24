@@ -75,5 +75,6 @@
     "editor.fontFamily": "'Fantasque Sans Mono', 'Monaco', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
     "files.associations": {
         "*.scm": "lisp"
-    }
+    },
+    "go.useLanguageServer": true
 }
