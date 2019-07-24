@@ -41,4 +41,6 @@ filetype plugin indent on
 let g:prettier#autoformat = 0
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql PrettierAsync
 
+autocmd FileType sh setlocal expandtab shiftwidth=2 tabstop=2
+
 colorscheme material-monokai
