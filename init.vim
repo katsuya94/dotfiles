@@ -20,4 +20,6 @@ tnoremap <Esc> <C-\><C-n>
 autocmd BufEnter term://* startinsert
 autocmd TermOpen term://* startinsert
 
+autocmd FileType ruby setlocal ts=2 sw=2 expandtab
+
 colorscheme material-monokai
