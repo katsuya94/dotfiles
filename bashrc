@@ -1,5 +1,11 @@
 alias vim=nvim
+alias vi=nvim
 alias g=git
+alias n=go-notes
+alias notes=go-notes
+
+export PATH=$PATH:~/go/bin
+export EDITOR=nvim
 
 source "$(dirname "$(stat -f %Y ~/.bashrc)")/git-prompt.sh"
 GIT_PS1_SHOWDIRTYSTATE=1
@@ -17,6 +23,5 @@ __prompt_command() {
   postfix+=" \\\$ "
   __git_ps1 "\u@\h:\w" "$postfix"
 }
-
 
 PROMPT_COMMAND=__prompt_command

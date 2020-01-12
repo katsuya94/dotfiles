@@ -76,5 +76,21 @@
     "files.associations": {
         "*.scm": "lisp"
     },
-    "go.useLanguageServer": true
+    "go.useLanguageServer": true,
+    "window.zoomLevel": 0,
+    "ruby.lint": {
+        "reek": true,
+        "rubocop": true,
+        "ruby": true, //Runs ruby -wc
+        "fasterer": true,
+        "debride": true,
+        "ruby-lint": true
+    },
+    "[ruby]": {
+        "editor.formatOnSave": true,
+        "editor.tabSize": 2
+    },
+    "ruby.format": "rubocop",
+    "editor.formatOnSaveTimeout": 1500,
+    "ruby.intellisense": false
 }
