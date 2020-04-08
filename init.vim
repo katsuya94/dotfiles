@@ -1,15 +1,10 @@
+set termguicolors
 set number
 set colorcolumn=80
 set tabstop=4
 set shiftwidth=4
 set ignorecase
 set smartcase
-set wrap
-set linebreak
-set breakindent
-set breakindentopt=shift:8
-set breakat-=.
-set breakat-=*
 
 call plug#begin()
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -25,13 +20,15 @@ call plug#end()
 
 let NERDSpaceDelims=1
 
-let g:go_fmt_command = "goimports"
+let g:go_gopls_enabled = 0
 let g:go_def_mapping_enabled = 0
 let g:go_doc_keywordprg_enabled = 0
-let g:go_code_completion_enabled = 0
+let g:go_highlight_diagnostic_errors = 0
+let g:go_highlight_diagnostic_warnings = 0
 
 let g:lsp_virtual_text_prefix = " // "
 let g:lsp_diagnostics_echo_cursor = 1
+let g:lsp_highlight_references_enabled = 1
 
 let g:asyncomplete_auto_completeopt = 0
 
@@ -62,6 +59,8 @@ map <silent> <leader>cc :TComment<CR>
 map <silent> <leader>ff :Files<CR>
 map <silent> <leader>fg :GFiles<CR>
 map <silent> <leader>tt :terminal<CR>
+map <silent> <leader>rf :GoTestFunc<CR>
+map <silent> <leader>rp :GoTest<CR>
 
 tnoremap <C-w>h <C-\><C-n><C-w>h
 tnoremap <C-w>j <C-\><C-n><C-w>j
@@ -74,5 +73,10 @@ autocmd TermOpen term://* startinsert
 
 autocmd FileType ruby setlocal ts=2 sw=2 expandtab
 autocmd FileType text setlocal tw=80
+
+highlight link LspErrorHighlight CursorColumn
+highlight link LspWarningHighlight CursorColumn
+highlight link LspInformationHighlight CursorColumn
+highlight link LspHintHighlight CursorColumn
 
 colorscheme material-monokai
