@@ -1,4 +1,5 @@
 set termguicolors
+set mouse=a
 set number
 set colorcolumn=80
 set tabstop=4
