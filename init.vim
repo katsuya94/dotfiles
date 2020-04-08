@@ -6,6 +6,7 @@ set tabstop=4
 set shiftwidth=4
 set ignorecase
 set smartcase
+set nowrap
 
 call plug#begin()
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
