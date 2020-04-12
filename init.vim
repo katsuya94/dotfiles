@@ -22,6 +22,7 @@ call plug#end()
 
 let NERDSpaceDelims=1
 
+let g:go_imports_autosave = 1
 let g:go_gopls_enabled = 0
 let g:go_def_mapping_enabled = 0
 let g:go_doc_keywordprg_enabled = 0
@@ -38,13 +39,31 @@ autocmd User lsp_setup call lsp#register_server({
     \ 'name': 'gopls',
     \ 'cmd': {server_info->['gopls']},
     \ 'whitelist': ['go'],
+    \ 'workspace_config': {
+    \   'staticcheck': v:true,
+    \ }
     \ })
 
 set omnifunc=
 set completeopt=menuone,noinsert,noselect,preview
 set keywordprg=:LspHover
 
-autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+let s:last_key_in_pum_was_cr=v:false
+
+" Record that the last pressed key was CR and confirm selection when pop-up
+" menu is open.
+inoremap <expr> <CR> pumvisible() ? RecordCRAndConfirmComplete() :"\<CR>"
+" Use arrow keys to navigate pop-up menu.
+inoremap <expr> <Down> pumvisible() ? "\<C-N>" :"\<Down>"
+inoremap <expr> <Up> pumvisible() ? "\<C-P>" :"\<Up>"
+
+" Close preview window when completion is done.
+autocmd CompleteDone * if pumvisible() | pclose | endif
+autocmd CompleteDone * if
+      \ if s:last_key_in_pum_was_cr |
+      \   call NewlineIfNoSelection(v:completed_item) |
+      \ endif |
+      \ s:last_key_in_pum_was_cr=v:false
 
 nnoremap <C-]> :LspDefinition<CR>
 nnoremap gr :LspReferences<CR>
@@ -74,6 +93,7 @@ autocmd BufEnter term://* startinsert
 autocmd TermOpen term://* startinsert
 
 autocmd FileType ruby setlocal ts=2 sw=2 expandtab
+autocmd FileType vim setlocal ts=2 sw=2 expandtab
 autocmd FileType text setlocal tw=80
 
 highlight link LspErrorHighlight CursorColumn
