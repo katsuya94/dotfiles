@@ -59,7 +59,7 @@ inoremap <expr> <Up> pumvisible() ? "\<C-P>" :"\<Up>"
 
 " Close preview window when completion is done.
 autocmd CompleteDone * if pumvisible() | pclose | endif
-autocmd CompleteDone * if
+autocmd CompleteDone *
       \ if s:last_key_in_pum_was_cr |
       \   call NewlineIfNoSelection(v:completed_item) |
       \ endif |
