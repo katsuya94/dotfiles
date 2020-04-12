@@ -62,20 +62,23 @@ inoremap <expr> <CR> pumvisible() ? RecordCRAndConfirmComplete() :"\<CR>"
 inoremap <expr> <Down> pumvisible() ? "\<C-N>" :"\<Down>"
 inoremap <expr> <Up> pumvisible() ? "\<C-P>" :"\<Up>"
 
+" Clear autocmds set by vim-lsp
+autocmd! lsp_ui_vim_completion CompleteDone *
+
 " Close preview window when completion is done.
 autocmd CompleteDone * if pumvisible() | pclose | endif
 
 " Emit a CR if completion finishes with nothing selected.
 function NewlineIfNoSelection(completed_item)
-  if a:completed_item["kind"] == ""
-    call feedkeys("\<CR>")
+  if s:last_key_in_pum_was_cr
+    echom string(a:completed_item)
+    if a:completed_item["kind"] == ""
+      call feedkeys("\<CR>")
+    endif
   endif
+  let s:last_key_in_pum_was_cr=v:false
 endfunction
-autocmd CompleteDone *
-      \ if s:last_key_in_pum_was_cr |
-      \   call NewlineIfNoSelection(v:completed_item) |
-      \ endif |
-      \ let s:last_key_in_pum_was_cr=v:false
+autocmd CompleteDone * call NewlineIfNoSelection(v:completed_item)
 
 nnoremap <C-]> :LspDefinition<CR>
 nnoremap gr :LspReferences<CR>
