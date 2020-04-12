@@ -52,18 +52,30 @@ let s:last_key_in_pum_was_cr=v:false
 
 " Record that the last pressed key was CR and confirm selection when pop-up
 " menu is open.
+function RecordCRAndConfirmComplete()
+  let s:last_key_in_pum_was_cr=v:true
+  return "\<C-Y>"
+endfunction
 inoremap <expr> <CR> pumvisible() ? RecordCRAndConfirmComplete() :"\<CR>"
+
 " Use arrow keys to navigate pop-up menu.
 inoremap <expr> <Down> pumvisible() ? "\<C-N>" :"\<Down>"
 inoremap <expr> <Up> pumvisible() ? "\<C-P>" :"\<Up>"
 
 " Close preview window when completion is done.
 autocmd CompleteDone * if pumvisible() | pclose | endif
+
+" Emit a CR if completion finishes with nothing selected.
+function NewlineIfNoSelection(completed_item)
+  if a:completed_item["kind"] == ""
+    call feedkeys("\<CR>")
+  endif
+endfunction
 autocmd CompleteDone *
       \ if s:last_key_in_pum_was_cr |
       \   call NewlineIfNoSelection(v:completed_item) |
       \ endif |
-      \ s:last_key_in_pum_was_cr=v:false
+      \ let s:last_key_in_pum_was_cr=v:false
 
 nnoremap <C-]> :LspDefinition<CR>
 nnoremap gr :LspReferences<CR>
