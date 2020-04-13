@@ -1,12 +1,10 @@
-alias vim=nvim
-alias vi=nvim
 alias g=git
 alias n=go-notes
 alias notes=go-notes
 
 export PATH=$PATH:/Applications/calibre.app/Contents/MacOS
 export PATH=$PATH:~/go/bin
-export EDITOR=nvim
+export EDITOR=vim
 
 source "$(dirname "$(stat -f %Y ~/.bashrc)")/git-prompt.sh"
 GIT_PS1_SHOWDIRTYSTATE=1
