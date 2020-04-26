@@ -40,11 +40,9 @@ let g:go_code_completion_enabled = 0
 " Remove vim-go completion hook
 autocmd FileType go autocmd! vim-go-buffer CompleteDone <buffer>
 
-let g:lsp_text_edit_enabled = 1
-let g:lsp_highlights_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1
 let g:lsp_diagnostics_float_cursor = 1
-let g:lsp_highlight_references_enabled = 1
+let g:lsp_log_file = '/tmp/vim-lsp.log'
 
 let g:asyncomplete_auto_completeopt = 0
 
